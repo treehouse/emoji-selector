@@ -1,33 +1,48 @@
-// const key = '4904071080a3a378fed80c61462647a72507e5be';
-
-// // all endpoints
-// const fullApi = `https://emoji-api.com/emojis?access_key=${key}`;
-
-// // search
-// const searchApi = `https://emoji-api.com/emojis?search=computer&access_key=${key}`
+const key = '4904071080a3a378fed80c61462647a72507e5be';
+const allEmojis = `https://emoji-api.com/emojis?access_key=${key}`
+const emojiCategory = `https://emoji-api.com/categories?access_key=${key}`
 
 
+const alphabet = 'abcdefghjklmnopqrstuvwxyz';
+let textArr = [];
 
+fetch(allEmojis)
+    .then((response) => response.json())
+    .then((data) => createEmoji(data));
 
+function createEmoji(emoji) {
+    const emojiContainer = document.querySelector('.emoji-container ul');
 
+    emoji.forEach(item => {
+        let li = document.createElement('li');
+        li.innerHTML = `&#x${item.codePoint};`
+        emojiContainer.appendChild(li);
+    });
 
+    const emojis = document.querySelectorAll('.emoji-section li');
+    emojis.forEach((emoji) => {
+        textArr.push(emoji.textContent.toLowerCase().split(""));
+        textArr.forEach((text, index) => {
+            text.forEach(letter => {
+                if (alphabet.includes(letter)) {
+                    emojis[index].style.display = 'none';
+                }
+            });
+        });
+    });
 
-//   const form = document.querySelector('form');
-//   form.addEventListener('submit', e => {
-//     e.preventDefault();
-//     let value = e.target.querySelector('input').value;
-//     fetch(`https://emoji-api.com/emojis?search=${value}&access_key=${key}`)
-//         .then((response) => response.json())
-//         .then((data) => console.log(data));
-//   })
-
+    const emojiTitle = document.querySelector('.emoji-section .title');
+    emojiTitle.textContent = 'Showing all emojis';    
+}
 
 const form = document.querySelector('form');
 const formInput = form.querySelector('input');
 form.addEventListener('submit', e => {
     e.preventDefault();
-    createChat(formInput.value);
-    formInput.value = '';
+    if (formInput.value !== '') {
+        createChat(formInput.value);
+        formInput.value = '';
+    }
 })
 
 function createChat(chatValue) {
@@ -42,3 +57,20 @@ function createChat(chatValue) {
     chats.appendChild(newChat);
     chats.scrollTop = chats.scrollHeight;
 }
+
+
+
+
+
+
+
+
+
+const emojiIcon = document.querySelector('.emoji-toggle');
+const emojiSelector = document.querySelector('.emoji-selector')
+emojiIcon.addEventListener('click', e => {
+    emojiSelector.classList.toggle('active');
+});
+formInput.addEventListener('click', () => {
+    emojiSelector.classList.remove('active');
+})

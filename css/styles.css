@@ -8,18 +8,19 @@
 
 body {
   background-color: #E5E5E5;
+  background-color: #686f7d;
 }
 
 .chat-display {
   background-color: white;
-  border-radius: 1rem;
+  border-radius: 1rem 1rem 0 0;
   margin: 2rem auto 0;
   width: 90%;
   max-width: 700px;
-  min-height: 100px;
-  max-height: 300px;
-  padding: 1rem 0.5rem 1rem 2rem;
+  min-height: 500px;
+  max-height: 500px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.015);
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -37,33 +38,33 @@ body {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 1rem;
-  animation: chatSlide 1s ease forwards;
+  animation: chatSlide 0.3s ease forwards;
   opacity: 0;
   width: 100%;
-}
-.chat-display ul li:last-child {
-  margin-bottom: 0;
+  padding: 0.25rem 1rem;
 }
 .chat-display ul li .user-avatar {
-  margin-right: 1rem;
   background-color: rgba(81, 137, 196, 0.1);
+  margin-right: 1rem;
   height: 40px;
   min-width: 40px;
   width: 40px;
   border-radius: 50%;
 }
 .chat-display ul li p {
-  font-size: 0.9rem;
-  color: #465058;
+  font-size: 0.8rem;
+  color: #687783;
 }
 
 .chat-bar {
   background-color: white;
+  position: relative;
   width: 90%;
   max-width: 700px;
-  margin: 1rem auto;
+  margin: 0 auto 1rem;
+  border-top: 1px solid #eee;
   border-radius: 1rem;
+  border-radius: 0 0 1rem 1rem;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.015);
   padding: 1rem;
 }
@@ -80,7 +81,7 @@ body {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgba(81, 137, 196, 0.06);
+  background-color: rgba(38, 74, 112, 0.06);
   margin-right: 1rem;
   border-radius: 25px;
 }
@@ -113,7 +114,7 @@ body {
   height: 45px;
   border-radius: 25px;
   border: none;
-  background-color: rgba(81, 137, 196, 0.06);
+  background-color: rgba(38, 74, 112, 0.06);
   padding-left: 1.5rem;
   outline: none;
 }
@@ -135,12 +136,103 @@ body {
 .chat-bar form button i {
   margin-left: 0.25rem;
 }
+.chat-bar .emoji-selector {
+  background-color: rgb(244, 245, 246);
+  display: none;
+  opacity: 0;
+  box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 50%;
+  left: 2%;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 315px;
+  height: 250px;
+  overflow: hidden;
+  padding-bottom: 2rem;
+  animation: emojiSlide 0.3s ease forwards;
+}
+.chat-bar .emoji-selector.active {
+  display: block;
+}
+.chat-bar .emoji-selector .input-container {
+  position: relative;
+  width: 100%;
+  padding: 0.5rem;
+}
+.chat-bar .emoji-selector .input-container input {
+  background-color: white;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 25px;
+  width: 100%;
+  outline: none;
+  color: #465058;
+}
+.chat-bar .emoji-selector .input-container input::placeholder {
+  font-weight: 300;
+}
+.chat-bar .emoji-selector .input-container i {
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  color: #465058;
+  font-size: 0.9rem;
+  transform: translate(-50%, -50%);
+}
+.chat-bar .emoji-selector .emoji-container {
+  padding: 0.5rem;
+  height: 100%;
+  overflow: auto;
+}
+.chat-bar .emoji-selector .emoji-container .emoji-section {
+  margin-bottom: 1.5rem;
+}
+.chat-bar .emoji-selector .emoji-container .emoji-section p.title {
+  font-size: 0.7rem;
+  color: #465058;
+  margin-bottom: 1rem;
+}
+.chat-bar .emoji-selector .emoji-container .emoji-section ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  width: 100%;
+}
+.chat-bar .emoji-selector .emoji-container .emoji-section ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  transition: background-color, 0.2s;
+}
+.chat-bar .emoji-selector .emoji-container .emoji-section ul li:hover {
+  background-color: rgb(224, 224, 224);
+}
 
 @keyframes chatSlide {
   0% {
     opacity: 0;
   }
   100% {
+    opacity: 1;
+  }
+}
+@keyframes emojiSlide {
+  0% {
+    opacity: 0;
+    bottom: 50%;
+  }
+  100% {
+    bottom: 66%;
     opacity: 1;
   }
 }

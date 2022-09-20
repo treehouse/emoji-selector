@@ -4,6 +4,8 @@ $btn-size: 45px;
 $accent: rgb(81, 137, 196);
 $utility-bg: rgba($accent, 0.06);
 $prim-color: #465058;
+$ui-bg: white;
+
 
 
 @mixin flex($dir, $wrap, $just, $align) {
@@ -36,55 +38,56 @@ $prim-color: #465058;
 
 body {
     @include bg(#E5E5E5);
+    @include bg(#686f7d);
 }
 
 .chat-display {
-    @include bg(white);
-    border-radius: 1rem;
+    @include bg($ui-bg);
+    border-radius: 1rem 1rem 0 0;
     margin: 2rem auto 0;
     width: 90%;
     max-width: 700px;
-    min-height: 100px;
-    max-height: 300px;
-    padding: 1rem .5rem 1rem 2rem;
+    min-height: 500px;
+    max-height: 500px;
     box-shadow: 2px 2px 8px rgba(black, 0.015);
-
+    padding-bottom: 1rem;
     @include flex(column, nowrap, flex-end, center);
     ul {
         list-style: none;
         width: 100%;
-    overflow: auto;
+        overflow: auto;
         li {
             @include flex(row, nowrap, flex-start, center);
-            margin-bottom: 1rem;
-            animation: chatSlide 1s ease forwards;
+            animation: chatSlide .3s ease forwards;
             opacity: 0;
             width: 100%;
-            &:last-child {
-                margin-bottom: 0;
-            }
+            padding: .25rem 1rem;
             .user-avatar {
-                margin-right: 1rem;
                 @include bg(rgba($accent, 0.1));
+                margin-right: 1rem;
                 height: 40px;
                 min-width: 40px;
                 width: 40px;
                 border-radius: 50%;
             }
             p {
-                font-size: .9rem;
-                color: $prim-color;
+                font-size: .8rem;
+                color: lighten($prim-color, 15%);
+                // font-weight:300;
             }
         }
     }
 }
 
 .chat-bar {
-    @include bg(white);
+    @include bg($ui-bg);
+    position: relative;
     width: 90%;
     max-width: 700px;
-    margin: 1rem auto;
+    margin: 0 auto 1rem;
+    border-top: 1px solid #eee;
     border-radius: 1rem;
+    border-radius: 0 0 1rem 1rem;
     box-shadow: 2px 2px 8px rgba(black, 0.015);
     padding: 1rem;
     ul.utilities {
@@ -92,7 +95,7 @@ body {
         ul {
             @include flex(row, nowrap, flex-start, center);
     
-            @include bg($utility-bg);
+            @include bg(darken($utility-bg, 25%));
             margin-right: 1rem;
             border-radius: 25px;
             &:last-child {
@@ -124,7 +127,7 @@ body {
             height: $btn-size;
             border-radius: 25px;
             border: none;
-            @include bg($utility-bg);
+            @include bg(darken($utility-bg, 25%));
             padding-left: 1.5rem;
             outline: none;
         }
@@ -147,6 +150,84 @@ body {
             }
         }
     }
+
+    .emoji-selector {
+        @include bg(rgb(244, 245, 246));
+        display: none;
+        opacity: 0;
+        box-shadow: 0px 1px 0px 1px rgba(black, 0.10);
+        position: absolute;
+        bottom: 50%;
+        left: 2%;
+        border-radius: 1rem;
+        width: 100%;
+        max-width: 315px;
+        height: 250px;
+        overflow: hidden;
+        padding-bottom: 2rem;
+        animation: emojiSlide .3s ease forwards;
+        &.active {
+            display: block;
+        }
+        .input-container {
+            position: relative;
+            width: 100%;
+            padding: .5rem;
+            input {
+                @include bg(white);
+                border: none;
+                padding: .5rem 1rem .5rem 1rem;
+                border-radius: 25px;
+                width: 100%;
+                outline: none;
+                color: $prim-color;
+                &::placeholder {
+                    font-weight: 300;
+                }
+            }
+            i {
+                position: absolute;
+                top: 50%;
+                left: 90%;
+                color: $prim-color;
+                font-size: .9rem;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .emoji-container {
+            padding: .5rem;
+            height: 100%;
+            overflow: auto;
+            .emoji-section {
+                margin-bottom: 1.5rem;
+                p.title {
+                    font-size: .7rem;
+                    color: $prim-color;
+                    // font-weight: 300;
+                    // margin-left: .5rem;
+                    margin-bottom: 1rem;
+                }
+                ul {
+                    @include flex(row, wrap, flex-start, center);
+                    gap: .25rem;
+                    list-style: none;
+                    width: 100%;
+                    li {
+                        @include center-flex;
+                        border-radius: 5px;
+                        font-size: 1.25rem;
+                        height: 30px;
+                        width: 30px;
+                        cursor: pointer;
+                        transition: background-color, .2s;
+                        &:hover {
+                            @include bg(rgb(224, 224, 224));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -156,6 +237,19 @@ body {
         opacity: 0;
     }
     100% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes emojiSlide {
+    0% {
+        opacity: 0;
+        bottom: 50%;
+    }
+
+    100% {
+        bottom: 66%;
         opacity: 1;
     }
 }
