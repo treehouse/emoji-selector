@@ -1,0 +1,161 @@
+@import url("https://fonts.cdnfonts.com/css/gotham-rounded");
+
+$btn-size: 45px;
+$accent: rgb(81, 137, 196);
+$utility-bg: rgba($accent, 0.06);
+$prim-color: #465058;
+
+
+@mixin flex($dir, $wrap, $just, $align) {
+    @content;
+    display: flex;
+    flex-direction: $dir;
+    flex-wrap: $wrap;
+    justify-content: $just;
+    align-items: $align;
+}
+
+@mixin center-flex {
+    @content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin bg($color) {
+    @content;
+    background-color: $color;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gotham Rounded", sans-serif;
+}
+
+body {
+    @include bg(#E5E5E5);
+}
+
+.chat-display {
+    @include bg(white);
+    border-radius: 1rem;
+    margin: 2rem auto 0;
+    width: 90%;
+    max-width: 700px;
+    min-height: 100px;
+    max-height: 300px;
+    padding: 1rem .5rem 1rem 2rem;
+    box-shadow: 2px 2px 8px rgba(black, 0.015);
+
+    @include flex(column, nowrap, flex-end, center);
+    ul {
+        list-style: none;
+        width: 100%;
+    overflow: auto;
+        li {
+            @include flex(row, nowrap, flex-start, center);
+            margin-bottom: 1rem;
+            animation: chatSlide 1s ease forwards;
+            opacity: 0;
+            width: 100%;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .user-avatar {
+                margin-right: 1rem;
+                @include bg(rgba($accent, 0.1));
+                height: 40px;
+                min-width: 40px;
+                width: 40px;
+                border-radius: 50%;
+            }
+            p {
+                font-size: .9rem;
+                color: $prim-color;
+            }
+        }
+    }
+}
+
+.chat-bar {
+    @include bg(white);
+    width: 90%;
+    max-width: 700px;
+    margin: 1rem auto;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 8px rgba(black, 0.015);
+    padding: 1rem;
+    ul.utilities {
+        @include flex(row, nowrap, flex-start, center);
+        ul {
+            @include flex(row, nowrap, flex-start, center);
+    
+            @include bg($utility-bg);
+            margin-right: 1rem;
+            border-radius: 25px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        li {
+            @include center-flex;
+            color: $prim-color;
+            border-radius: 50%;
+            height: $btn-size;
+            width: $btn-size;
+            list-style: none;
+            cursor: pointer;
+            transition: background-color, .3s;
+            font-size: .8rem;
+            &:hover {
+                @include bg(darken($utility-bg, 100%));
+            }
+        }
+    }
+    
+    form {
+        margin: .5rem 0;
+        position: relative;
+        input {
+            color: $prim-color;
+            width: 100%;
+            height: $btn-size;
+            border-radius: 25px;
+            border: none;
+            @include bg($utility-bg);
+            padding-left: 1.5rem;
+            outline: none;
+        }
+        button {
+            @include bg($accent);
+            cursor: pointer;
+            color: white;
+            text-align: center;
+            border: none;
+            position: absolute;
+            top: 50%;
+            left: 91.5%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 100px;
+            border-radius: 25px;
+            height: calc( $btn-size - 8px);
+            i {
+                margin-left: .25rem;
+            }
+        }
+    }
+}
+
+
+
+@keyframes chatSlide {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
