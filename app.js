@@ -10,12 +10,14 @@ fetch(allEmojis)
     .then((response) => response.json())
     .then((data) => createEmoji(data));
 
-function createEmoji(emoji) {
+async function createEmoji(emoji) {
     const emojiContainer = document.querySelector('.emoji-container ul');
 
-    emoji.forEach(item => {
+    emoji.forEach((item, index) => {
         let li = document.createElement('li');
         li.innerHTML = `&#x${item.codePoint};`
+        li.setAttribute('data-unicodename', item.unicodeName)
+        li.setAttribute('data-emoji-index', index)
         emojiContainer.appendChild(li);
     });
 
@@ -25,7 +27,7 @@ function createEmoji(emoji) {
         textArr.forEach((text, index) => {
             text.forEach(letter => {
                 if (alphabet.includes(letter)) {
-                    emojis[index].style.display = 'none';
+                    emojis[index].remove();
                 }
             });
         });
@@ -74,3 +76,23 @@ emojiIcon.addEventListener('click', e => {
 formInput.addEventListener('click', () => {
     emojiSelector.classList.remove('active');
 })
+
+
+
+
+
+
+
+const emojiSearch = document.getElementById('emojiSearch');
+emojiSearch.addEventListener('keyup', e => {
+    let emojis = document.querySelectorAll('.emoji-section li');
+    console.log(emojis)
+    let value = e.target.value.toLowerCase();
+    emojis.forEach(emoji => {
+        if (!emoji.getAttribute('data-unicodename').includes(value)) {
+            emoji.style.display = 'none';
+        } else {
+            emoji.style.display = 'flex';
+        }
+    })
+});

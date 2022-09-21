@@ -1,7 +1,7 @@
 @import url("https://fonts.cdnfonts.com/css/gotham-rounded");
 
 $btn-size: 45px;
-$accent: rgb(81, 137, 196);
+$accent: rgb(112, 121, 220);
 $utility-bg: rgba($accent, 0.06);
 $prim-color: #465058;
 $ui-bg: white;
@@ -37,8 +37,10 @@ $ui-bg: white;
 }
 
 body {
-    @include bg(#E5E5E5);
-    @include bg(#686f7d);
+    @include bg(#202231);
+    @include center-flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .chat-display {
@@ -73,6 +75,7 @@ body {
             p {
                 font-size: .8rem;
                 color: lighten($prim-color, 15%);
+                animation: newMessage 3s ease forwards;
                 // font-weight:300;
             }
         }
@@ -251,5 +254,14 @@ body {
     100% {
         bottom: 66%;
         opacity: 1;
+    }
+}
+
+@keyframes newMessage {
+    0% {
+        color: $accent;
+    }
+    100% {
+        color: $prim-color;
     }
 }
