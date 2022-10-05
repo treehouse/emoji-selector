@@ -24,7 +24,7 @@ const emojiSelectorIcon = document.getElementById('emojiSelectorIcon');
 const emojiSelector = document.getElementById('emojiSelector');
 ```
 
-Now that we have the variables set up for our emoji icon and our emoji-selector, let's toggle that `active` class on the menu when the icon is clicked.
+Now that we have the variables set up for our emoji-icon and our emoji-selector, let's toggle that `active` class on the menu when the icon is clicked.
 
 In our `app.js` file:
 
@@ -92,3 +92,32 @@ unicodeName: "ghost"
  We are first creating a new `li` element and then setting the `textContent` of our `li` to the `character` of our object. Then, we're appending that new `li` to our parent `ul`. That's all we'll need for our function. So now we need to call it. Lets replace our `console.log(data)` in our `.then()` method to `loadEmoji(data)`. Now when we get back data from our API call, it'll run that function, which loops over all the data and creates a `li` element with our emoji as the `textContent`. 
 
  🥳 🎉 Great work! You should now see all the emojis when clicking on the emoji icon!
+
+ Your finished code should look like this:
+
+ ```
+const emojiSelectorIcon = document.getElementById('emojiSelectorIcon');
+const emojiSelector = document.getElementById('emojiSelector');
+
+emojiSelectorIcon.addEventListener('click', () => {
+    emojiSelector.classList.toggle('active');
+});
+
+fetch('https://emoji-api.com/emojis?access_key=<YOUR API KEY>')
+    .then(res => res.json())
+    .then(data => loadEmoji(data))
+
+function loadEmoji(data) {
+    data.forEach(emoji => {
+        let li = document.createElement('li');
+        li.textContent = emoji.character;
+        emojiList.appendChild(li);
+    });
+}
+```
+
+Want to be able to add a search feature to your emoji menu? Checkout the video tutorial for this functionality!
+
+[Treehouse Video: JavaScript Emoji Selector]()
+
+Until next time, have fun and happy coding! 🙂
