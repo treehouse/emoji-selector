@@ -7,10 +7,13 @@ I'd like to show you how we can create an easy-to-use emoji selector for any web
 [Treehouse Video: JavaScript Emoji Selector]()
 
 ## Getting Started
-I have built out a simple chat-app application. The HTML markup as well as the styles for this project are already completed. We will only be going over the JavaScript functionality inside of the `app.js` file. So with that said, the only prerequisites would be to understand some basic JavaScript. Our JavaScripts Basics Course (linked below) can get you started with that if you need a refresher. Let's get started!
+I have built out a simple chat-app application. The HTML markup as well as the styles for this project are already completed. We will only be going over the JavaScript functionality inside of the `app.js` file. So with that said, the only prerequisites would be to understand some basic JavaScript. Our JavaScripts Basics Course (linked below) can get you started with that if you need a refresher. I'll also list below our course that goes into much more detail with `fetch()`.
 
-[Treehouse Course: JavaScript Basics Course]()
+ Let's get started!
 
+[Treehouse Course: JavaScript Basics Course](https://teamtreehouse.com/library/javascript-basics)
+
+[Working with the Fetch API](https://teamtreehouse.com/library/working-with-the-fetch-api)
 
 ## How to Toggle the Emoji Menu
 The first step in building out this feature to our chat-app is to show and hide the emoji menu when the emoji icon is clicked. This is very easy to do, so let's get started there.
