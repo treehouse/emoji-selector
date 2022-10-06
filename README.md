@@ -2,9 +2,9 @@
 
 I'd like to show you how we can create an easy-to-use emoji selector for any website or application. We'll use the browser's built-in `fetch` API to connect to the `open-emoji API` to display a list of all emojis. If you'd like to code along with me, be sure to download the repository for this project to your machine and follow along with this README.md file, or you can check out our blog article to follow along as well. Alternatively, if videos are more your thing, check out our video tutorial on this project.
 
-[Treehouse Blog: JavaScript Emoji Selector]()
+[Treehouse Blog: JavaScript Emoji Selector](https://blog.teamtreehouse.com/javascript-emoji-selector)
 
-[Treehouse Video: JavaScript Emoji Selector]()
+[Treehouse Video: JavaScript Emoji Selector](https://teamtreehouse.com/library/javascript-emoji-selector-using-fetch)
 
 ## Getting Started
 I have built out a simple chat-app application. The HTML markup as well as the styles for this project are already completed. We will only be going over the JavaScript functionality inside of the `app.js` file. So with that said, the only prerequisites would be to understand some basic JavaScript. Our JavaScripts Basics Course (linked below) can get you started with that if you need a refresher. I'll also list below our course that goes into much more detail with `fetch()`.
@@ -121,6 +121,6 @@ function loadEmoji(data) {
 
 Want to be able to add a search feature to your emoji menu? Checkout the video tutorial for this functionality!
 
-[Treehouse Video: JavaScript Emoji Selector]()
+[Treehouse Video: JavaScript Emoji Selector](https://teamtreehouse.com/library/javascript-emoji-selector-using-fetch)
 
 Until next time, have fun and happy coding! 🙂
