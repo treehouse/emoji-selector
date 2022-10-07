@@ -1,6 +1,6 @@
 # JavaScript Emoji Selector
 
-I'd like to show you how we can create an easy-to-use emoji selector for any website or application. We'll use the browser's built-in `fetch` API to connect to the `open-emoji API` to display a list of all emojis. If you'd like to code along with me, be sure to download the repository for this project to your machine and follow along with this README.md file, or you can check out our blog article to follow along as well. Alternatively, if videos are more your thing, check out our video tutorial on this project <a href="https://teamtreehouse.com/library/javascript-emoji-selector-using-fetch">here</a>
+I'd like to show you how we can create an easy-to-use emoji selector for any website or application. We'll use the browser's built-in `fetch` API to connect to the `open-emoji API` to display a list of all emojis. If you'd like to code along with me, be sure to download the repository for this project to your machine and follow along with this README.md file, or you can check out our blog article to follow along as well. Alternatively, if videos are more your thing, check out our video tutorial on this project.
 
 [Treehouse Blog: JavaScript Emoji Selector](https://blog.teamtreehouse.com/javascript-emoji-selector)
 
